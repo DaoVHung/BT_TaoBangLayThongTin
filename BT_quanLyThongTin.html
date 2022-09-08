@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bảng Thông Tin</title>
+    <link href="bangThongTin.css" rel="stylesheet">
+
+</head>
+<body>
+<h1> Bảng Thông Tin Học Viên </h1>
+<div>
+    <p>Số thứ tự</p>
+    <input id="stt" style="width: 100px" type="text">
+    <p>Họ và tên</p>
+    <input id="ten" type="text"> <br><br>
+    <button style=" border-radius: 30%; height: 30px; width: 50px" id="nhap" onclick="nhap()">NHẬP</button>
+    <br>
+    <br>
+</div>
+
+<table id="hienThi">
+    <tr>
+        <th>STT</th>
+        <th>Họ Và Tên</th>
+        <th>Sửa</th>
+        <th>Xoá</th>
+    </tr>
+</table>
+<script>
+    let data = []
+    function nhap() {
+        let stt = document.getElementById("stt").value;
+        let ten = document.getElementById("ten").value;
+        let item = {
+            Stt: stt,
+            Ten: ten,
+        }
+        let index = data.findIndex((c) => c.Stt == item.Stt)
+        if (index >= 0) {
+            data.splice(index, 1, item)
+            hienThi()
+        } else {
+            data.push(item)
+        }
+        hienThi()
+        don()
+    }
+    function hienThi() {
+        table = `<tr>
+                  <th>STT</th>
+                  <th>Họ Và Tên</th>
+                  <th>Sửa</th>
+                  <th>Xoá</th>
+                </tr>`
+        for (let i = 0; i < data.length; i++) {
+            table += `<tr>
+                      <td>${data[i].Stt}</td>
+                      <td>${data[i].Ten}</td>
+                      <td> <button onclick="Sua(${data[i].Stt})">Sửa</button></td>
+                      <td><button onclick="Xoa(${data[i].Stt})">Xoá</button></td>
+                   </tr>`
+        }
+        document.getElementById("hienThi").innerHTML = table
+    }
+    function don() {
+        document.getElementById("stt").value = ""
+        document.getElementById("ten").value = ""
+    }
+    function Xoa(X) {
+        for (let i = 0; i < data.length; i++) {
+            if (data[i].Stt == X) {
+                data.splice(i, 1)
+                hienThi()
+            }
+        }
+    }
+    function Sua(X) {
+        for (let i = 0; i < data.length; i++) {
+            if (data[i].Stt == X) {
+                document.getElementById("stt").value = data[i].Stt
+                document.getElementById("ten").value = data[i].Ten
+            }
+        }
+    }
+</script>
+
+
+</body>
+</html>

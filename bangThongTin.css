@@ -1,0 +1,26 @@
+h1{
+    font-family: Century;
+    text-align: center;
+}
+div{
+    font-family: "Calibri Light";
+    text-align: center;
+}
+table{
+    border-radius: 10%;
+    font-family: Century;
+    border-collapse: collapse;
+    width: 100%;
+}
+th,td{
+    font-family: Century;
+    border: 1px solid #dddddd;
+    text-align: center;
+    padding: 8px;
+}
+th{border: 5px solid darkslateblue;
+    background: dimgray;
+}
+body{
+ background: cornflowerblue;
+}
